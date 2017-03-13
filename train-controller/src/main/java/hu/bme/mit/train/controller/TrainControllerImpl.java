@@ -1,5 +1,7 @@
 package hu.bme.mit.train.controller;
 
+import java.util.concurrent.TimeUnit;
+
 import hu.bme.mit.train.interfaces.TrainController;
 
 public class TrainControllerImpl implements TrainController {
@@ -8,6 +10,16 @@ public class TrainControllerImpl implements TrainController {
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
 
+	public void start() {
+		try {
+			TimeUnit.SECONDS.sleep(1);
+			followSpeed();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public void followSpeed() {
 		if (referenceSpeed < 0) {
